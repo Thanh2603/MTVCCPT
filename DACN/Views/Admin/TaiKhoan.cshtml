@@ -14,22 +14,7 @@
             <th>Tên Đăng Nhập</th>
             <th>Mật Khẩu</th>
             <th>Chức Năng</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr id="row_@item.MaTaiKhoan">
-                <td>
-                    @Html.DisplayFor(modelItem => item.TaiKhoan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MatKhau)
-                </td>
-                <td>
-                    <button class="btn btn-success">
-                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaTaiKhoan }, new { @style = "color:white;" })
-                    </button>
+   
                     <button class="btn btn-danger">
                         @Ajax.ActionLink("Xóa", "Delete", new { id = item.MaTaiKhoan }, new AjaxOptions
                                     {
