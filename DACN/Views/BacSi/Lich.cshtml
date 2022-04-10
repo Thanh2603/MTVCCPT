@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DACN.Models.Lich>
+
+@{
+    ViewBag.Title = "Lich";
+    Layout = "~/Views/Shared/Doctor_Layout.cshtml";
+    var userAdmin = Session["userAdmin"] as DACN.Models.BacSi;
+}
+
+@using (Html.BeginForm("Lich", "BacSi", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h1 class="text-center wow fadeInUp mt-5">Lịch Làm Việc</h1>
+    <div class="main-form">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row mt-5">
+            <input type="hidden" class="form-control text-box single-line" id="MaBacSi" name="MaBacSi" value="@userAdmin.MaBacSi">
+            <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                <input type="datetime-local" class="form-control" name="Ngay" id="Ngay">
+            </div>
+            <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                <button type="submit" class="btn btn-primary mt-1">Thêm Lịch</button>
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th style="text-align:center">Lịch Làm Việc</th>
+            <th style="text-align:center">Trạng thái</th>
+            <th style="text-align:center">Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaLich">
+                <td style="text-align:center">@Html.DisplayFor(modelItem => item.Ngay)</td>
+                <td style="text-align:center">
+                    @{ 
+                        if(item.TrangThai == 1) 
+                        {
+                            <div style="color:forestgreen">Chưa có hẹn với bệnh nhân</div>
+                        }else if(item.TrangThai == 2)
+                        { 
+                            <div style="color:red">Đã có hẹn với bệnh nhân</div>
+                        }
+                    }
+                </td>
+                <td style="text-align:center">
+                    <button class="btn btn-danger">
+                        @Ajax.ActionLink("Xóa", "XoaLich", new { id = item.MaLich }, new AjaxOptions
+                                    {
+                                        Confirm = "Bạn có chắn muốn xóa lịch này?",
+                                        OnComplete = "$('#row_" + item.MaLich + "').remove()",
+                                        HttpMethod = "Post"
+                                    }, new {@style = "color:white"})
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <thead>
+        <tr>
+            <th style="text-align:center">Lịch Làm Việc</th>
+            <th style="text-align:center">Chức Năng</th>
+        </tr>
+    </thead>
+</table>

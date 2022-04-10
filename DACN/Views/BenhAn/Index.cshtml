@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DACN.Models.BenhAn>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Doctor_Layout.cshtml";
+}
+<br />
+<h1 style="text-align:center">Danh Sách bệnh Án</h1>
+<p style="text-align:center">
+    <button class="btn-info"> @Html.ActionLink("Thêm mới", "Create", "BenhAn", new { }, new { @style = "color:white;" }) </button>
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            Mã Bệnh Án
+        </th>
+        <th>
+            Tên Bác Sĩ
+        </th>
+        <th>
+            Tên Bệnh Nhân
+        </th>
+        <th>
+            Ngày Khám
+        </th>
+        <th>
+            Nội Dung
+        </th>
+        <th>
+            Chuẩn Đoán
+        </th>
+        <th>
+            Chức Năng
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaBenhAn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BacSi.HoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BenhNhan.HoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayKham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuanDoan)
+            </td>
+            <td>
+                <button class="btn btn-primary">
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.MaBenhAn }, new { @style = "color:white;" })
+                </button>
+            </td>
+        </tr>
+    }
+</table>
+

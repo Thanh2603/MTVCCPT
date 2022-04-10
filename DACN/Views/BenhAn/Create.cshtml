@@ -1,0 +1,60 @@
+﻿@model DACN.Models.BenhAn
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Doctor_Layout.cshtml";
+    var userAdmin = Session["userAdmin"] as DACN.Models.BacSi;
+}
+<div class="page-section">
+    <div class="container">
+        @using (Html.BeginForm("Create", "BenhAn", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <h1 class="text-center wow fadeInUp">Bệnh Án Mới</h1>
+            <div class="main-form">
+                <div class="row-cols-6 m-t-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <input type="hidden" class="form-control text-box single-line" id="MaBacSi" name="MaBacSi" value="@userAdmin.MaBacSi">
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Mã Bệnh Nhân:</label>
+                        @Html.EditorFor(model => model.MaBenhNhan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaBenhNhan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Ngày Khám:</label>
+                        @Html.DropDownList("MaLich", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessage("MaLich", "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Nội Dung:</label>
+                        @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Nội Dung:</label>
+                        @Html.EditorFor(model => model.ChuanDoan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChuanDoan, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Nội Dung:</label>
+                        @Html.EditorFor(model => model.DonThuoc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DonThuoc, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">File:</label>
+                        @Html.EditorFor(model => model.fileBenhAn, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fileBenhAn, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3 wow zoomIn ml-3">Thêm mới</button>
+            </div>
+        }
+    </div>
+</div>
+

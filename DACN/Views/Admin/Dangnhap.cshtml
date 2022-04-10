@@ -1,0 +1,31 @@
+﻿@model DACN.Models.Admin
+@{
+    ViewBag.Title = "Dangnhap";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+<h2 class="mt-5" style="text-align:center">Trang Quản Trị</h2>
+@using (Html.BeginForm("Dangnhap", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group mt-5">
+            <div class="col-12">
+                @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "input100", placeholder = "Nhập tài khoản" } })
+                @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12">
+                @Html.EditorFor(model => model.MatKhau, new { htmlAttributes = new { @class = "input100", placeholder = "Nhập Mật khẩu", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="text-align:center">
+            <input type="submit" value="Đăng nhập" class="btn btn-primary align-content-center" />
+        </div>
+    </div>
+}

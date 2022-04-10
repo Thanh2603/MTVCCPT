@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DACN.Models.BacSi>
+@{
+    ViewBag.Title = "dsbs";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            Ảnh Đại Diện
+        </th>
+        <th>
+            Tên Bác Sĩ
+        </th>
+
+        <th>
+            Chuyên Khoa
+        </th>
+        <th>
+            Chức Năng
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center">
+                <img src="~/Content/HinhAnh/AvtBS/@item.HinhAnh" style="width: 120px; height: 50%" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoVaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChuyenKhoa.TenChuyenKhoa)
+            </td>
+            <td>
+                <button class="btn btn-success">
+                    @Html.ActionLink("Đặt lịch Khám", "DatLichHen", new { id = item.MaBacSi }, new { @style = "color:white;" })
+                </button>
+            </td>
+        </tr>
+    }
+</table>

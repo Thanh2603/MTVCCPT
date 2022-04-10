@@ -1,0 +1,49 @@
+﻿@model DACN.Models.LienHe
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6 float-left">
+                <h1 class="text-center mt-5 fadeInUp">Thông Tin Liên Lạc</h1>
+                @using (Html.BeginForm())
+                {
+                    <div class="row mb-3">
+                        @Html.AntiForgeryToken()
+                        <div class="col-sm-6 py-2 wow fadeInLeft">
+                            <label>Họ Tên</label>
+                            @Html.EditorFor(model => model.Ten, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChuDe, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-6 py-2 wow fadeInRight">
+                            <label>Email</label>
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChuDe, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-12 py-2 wow fadeInUp">
+                            <label for="subject">Chủ Đề</label>
+                            @Html.EditorFor(model => model.ChuDe, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChuDe, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-12 py-2 wow fadeInUp">
+                            <label for="message">Nội Dung</label>
+                            @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChuDe, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary wow zoomIn">Gửi Thông Tin</button>
+                }
+            </div>
+
+            <div class="col-md-6 mt-5 mb-5 float-left">
+                <h1 class="text-center wow fadeInUp">Bản Đồ</h1>
+                <div class="container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23562.790087245266!2d109.22337819787413!3d13.766625060607618!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x80acd71f37fe36c4!2zQuG7h25oIHZp4buHbiDEkWEga2hvYSBUcC4gUXV5IE5oxqFu!5e0!3m2!1svi!2s!4v1638193523643!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

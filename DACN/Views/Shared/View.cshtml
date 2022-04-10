@@ -1,0 +1,84 @@
+﻿@model DACN.Models.BenhAn
+
+<div>
+    <h4>BenhAn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BacSi.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BacSi.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BenhNhan.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BenhNhan.HinhAnh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChuyenKhoa.TenChuyenKhoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChuyenKhoa.TenChuyenKhoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenBenhNhan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenBenhNhan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fileBenhAn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileBenhAn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.XacThuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XacThuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrangThai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaBenhAn }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

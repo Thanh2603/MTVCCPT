@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DACN.Models.LichHen>
+
+@{
+    ViewBag.Title = "LichHen";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<h1 class="text-center wow fadeInUp mt-5">Lịch Hẹn</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Tên Bác Sĩ</th>
+            <th>Chuyên Khoa</th>
+            <th>Ngày Khám</th>
+            <th>Nội Dung</th>
+            <th>Trạng Thái</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.BacSi.HoVaTen)</td>
+                <td>@Html.DisplayFor(modelItem => item.BacSi.ChuyenKhoa.TenChuyenKhoa)</td>
+                <td>@Html.DisplayFor(modelItem => item.Lich.Ngay)</td>
+                <td>@Html.DisplayFor(modelItem => item.NoiDung)</td>
+                <td>
+                    @{
+                        if (item.TrangThai == 0)
+                        {
+                            <div style="color:red">Bị từ chối</div>
+                        }
+                        else if (item.TrangThai == 1)
+                        {
+                            <div style="color:slateblue">Đã chấp nhận</div>
+                        }
+                        else if (item.TrangThai == 2)
+                        {
+                            <div style="color:sandybrown">Chờ xác nhận</div>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <thead>
+        <tr>
+            <th>Tên Bác Sĩ</th>
+            <th>Chuyên Khoa</th>
+            <th>Ngày Khám</th>
+            <th>Nội Dung</th>
+            <th>Trạng Thái</th>
+        </tr>
+    </thead>
+</table>
+
+
+

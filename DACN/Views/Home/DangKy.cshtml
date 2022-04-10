@@ -1,0 +1,52 @@
+﻿@model DACN.ViewModel.TaoTaiKhoan
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+<div class="limiter">
+    <div class="container-login100">
+        <div>
+            @using (Html.BeginForm("DangKy", "Home", FormMethod.Post))
+            {
+                <div class="container-login100-form-btn">
+                    <h2 style="color:white">Tạo Tài Khoản</h2>
+                </div>
+                <div class="container-login100-form-btn js-tilt" data-tilt>
+                    @Html.AntiForgeryToken()
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        @Html.TextBoxFor(m => m.Ten, "", new { @class = "input100", @placeholder = "Tên Người Dùng" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        @Html.TextBoxFor(m => m.TaiKhoan, "", new { @class = "input100", @placeholder = "Tên tài khoản" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        @Html.PasswordFor(m => m.MatKhau, new { @class = "input100", @placeholder = "Mật khẩu" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input">
+                        @Html.PasswordFor(m => m.NhapLaiMatKhau, new { @class = "input100", @placeholder = "Nhập lại mật khẩu" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="container-login100-form-btn">
+                    <input type="submit" name="submit" class="btn btn-primary" value="Tạo Tài Khoản" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

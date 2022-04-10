@@ -1,0 +1,40 @@
+﻿@model DACN.Models.BenhAn
+@{
+    ViewBag.Title = "ChiTietBA";
+    Layout = "~/Views/Shared/Home_Layout.cshtml";
+}
+
+<h1 class="text-center wow fadeInUp mt-4">Thông Tin Bệnh Án</h1>
+<div class="main-form">
+    <div class="row-cols-6 m-t-6">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-12 py-2 wow fadeInUp">
+            <label class="ml-2">Tên Bệnh Nhân:</label>
+            @Html.DisplayFor(model => model.BenhNhan.HoVaTen, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-12 py-2 wow fadeInUp">
+            <label class="ml-2">Tên Bác Sĩ:</label>
+            @Html.DisplayFor(model => model.BacSi.HoVaTen, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="col-12 py-2 wow fadeInUp">
+            <label class="ml-2">Nội Dung:</label>
+            @Html.DisplayFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="col-12 py-2 wow fadeInUp">
+            <label class="ml-2">Chuẩn Đoán:</label>
+            @Html.DisplayFor(model => model.ChuanDoan, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        <div class="col-12 py-2 wow fadeInUp">
+            <label class="ml-2">Đơn Thuốc:</label>
+            @Html.DisplayFor(model => model.DonThuoc, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <button class="btn btn-primary mt-3 wow zoomIn ml-3 mb-3">
+            @Html.ActionLink("Quay Lại", "BenhAn", "Home", new { id = Model.MaBenhNhan}, new { @style = "color:white;" })
+        </button>
+    </div>
+    </div>
+

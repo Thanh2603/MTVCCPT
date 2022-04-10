@@ -1,0 +1,81 @@
+﻿@model DACN.ViewModel.BSViewModel
+@{
+    ViewBag.Title = "ThongTin";
+    Layout = "~/Views/Shared/Doctor_Layout.cshtml";
+}
+<div class="page-section">
+    @if(TempData["AlertMessage"] != null)
+    { 
+        <div class="alert @TempData["AlertType"] hide container" style="text-align:center">
+            @TempData["AlertMessage"]
+        </div>
+    }
+    
+    <div class="container">
+        @using (Html.BeginForm("ThongTin", "BacSi", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h1 class="text-center wow fadeInUp">Thông Tin Cá Nhân</h1>
+            <div class="main-form">
+                <div class="row-cols-6 m-t-6">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaBacSi)
+                    @Html.HiddenFor(model => model.TaiKhoan)
+                    @Html.HiddenFor(model => model.MatKhau)
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Mã Bác Sĩ:</label>
+                        @Html.DisplayFor(model => model.MaBacSi, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Ảnh Đại Diện:</label>
+                        <input type="file" id="avatarFile" name="avatarFile" class="form-control-file" />
+                        @Html.ValidationMessageFor(model => model.avatarFile, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp" style="text-align:center">
+                        <img src="~/Content/HinhAnh/AvtBS/@Model.HinhAnh" alt="Alternate Text" style="width:50%; height:150%" />
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Chuyên Khoa:</label>
+                        @Html.DropDownList("MaChuyenKhoa", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaChuyenKhoa, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Họ Tên:</label>
+                        @Html.EditorFor(model => model.HoVaTen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.HoVaTen, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Ngày Sinh:</label>
+                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Giới Tính:</label>
+                        @Html.DropDownList("MaGioiTinh", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MaGioiTinh, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Số Điện Thoại:</label>
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-12 py-2 wow fadeInUp">
+                        <label class="ml-2">Email:</label>
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3 wow zoomIn ml-3">Cập nhật thông tin</button>
+            </div>
+        }
+    </div>
+</div>
+

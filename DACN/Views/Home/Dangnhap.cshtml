@@ -1,0 +1,54 @@
+﻿@model DACN.Models.BenhNhan
+@{
+    ViewBag.Title = "Dangnhap";
+    Layout = "~/Views/Shared/LoginLayout.cshtml";
+}
+<div class="limiter">
+    <div class="container-login100">
+        <div class="form-row">
+            <div class="login100-pic" style="margin-bottom:auto">
+                <img style="width:350px; height: 350px" src="~/Public/images/Health-Care-Logo-1.jpg" alt="IMG">
+            </div>
+            <div>
+                <div>
+                    <h2 style="text-align:center; color: white; margin-bottom:35px; margin-top:50px">Đăng nhập</h2>
+                </div>
+
+                @using (Html.BeginForm("DangNhap", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="wrap-input100 validate-input">
+                        @Html.TextBoxFor(m => m.TaiKhoan, "", new { @class = "input100", @placeholder = "Tên Đăng Nhập", @id = "TaiKhoan" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-mobile-phone" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input">
+                        @Html.PasswordFor(m => m.MatKhau, new { @class = "input100", @placeholder = "Mật Khẩu", @id = "MatKhau" })
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    if (TempData["AlertMessage"] != null)
+                    {
+                        <div id="AlertBox" class="alert @TempData["AlertType"] hide">
+                            @TempData["AlertMessage"]
+                        </div>
+                    }
+
+                    <div class="container-login100-form-btn">
+                        <input type="submit" name="DangNhap" class="btn btn-primary" value="Đăng Nhập" />
+                    </div>
+
+                    <div style="text-align: center">
+                        <a style="color:white" href="@Url.Action("DangKy","Home")">Đăng Ký</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

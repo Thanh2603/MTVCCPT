@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DACN.Models.BenhNhan>
+@{
+    ViewBag.Title = "TaiKhoanBN";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<br />
+<h2>Tài Khoản Bệnh Nhân</h2>
+<p>
+    <button class="btn-info"> @Html.ActionLink("Thêm mới", "Create", new { }, new { @style = "color:white;" }) </button>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Ảnh Đại Diện</th>
+            <th>Tên Đăng Nhập</th>
+            <th>Mật Khẩu</th>
+            <th>Tên Bệnh Nhân</th>
+            <th>Ngày Sinh</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaBenhNhan">
+                <td style="text-align:center">
+                    <img src="~/Content/HinhAnh/AvtBN/@item.HinhAnh" style="width: 120px; height: 50%" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatKhau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoVaTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td style="color: white">
+                    <button class="btn btn-success">
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaBenhNhan }, new { @style = "color:white" })
+                    </button>
+                    <button class="btn btn-primary">
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaBenhNhan, Styles = "color:white" }, new { @style = "color:white;" })
+                    </button>
+                    <button class="btn btn-danger">
+                        @Ajax.ActionLink("Xóa", "Delete", new { id = item.MaBenhNhan }, new AjaxOptions
+                                    {
+                                        Confirm = "Bạn muốn xóa sản phẩm này?",
+                                        OnComplete = "$('#row_" + item.MaBenhNhan + "').remove()",
+                                        HttpMethod = "Delete"
+                                    }, new { @style = "color:white" })
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <thead>
+        <tr>
+            <th>Ảnh Đại Diện</th>
+            <th>Tên Đăng Nhập</th>
+            <th>Mật Khẩu</th>
+            <th>Tên Bệnh Nhân</th>
+            <th>Ngày Sinh</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+</table>
